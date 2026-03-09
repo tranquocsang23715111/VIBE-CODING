@@ -1,6 +1,13 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, ForeignKey, Integer, String, Float
 from database import Base
 
+
+class Class(Base):
+    __tablename__ = "classes"
+
+    class_id = Column(Integer, primary_key=True, index=True)
+    class_name = Column(String)
+    advisor = Column(String)
 class Student(Base):
     __tablename__ = "students"
 
@@ -9,6 +16,7 @@ class Student(Base):
     birth_year = Column(Integer)
     major = Column(String)
     gpa = Column(Float)
+    class_id = Column(Integer, ForeignKey("classes.class_id"))
 
     
 
